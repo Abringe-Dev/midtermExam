@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        @apply bg-paper text-ink font-sans;
+        font-feature-settings: 'ss01';
+    }
+
+    ::selection {
+        background: #0e5f56;
+        color: #f7f4ed;
+    }
+
+    :focus-visible {
+        outline: 2px solid #0e5f56;
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    input,
+    textarea,
+    select {
+        caret-color: #0e5f56;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #4b5f57;
+        opacity: 1;
+    }
+
+    a {
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+    }
+
+    .tnum {
+        font-variant-numeric: tabular-nums;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #efe9db;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #0e5f56;
+        border-radius: 8px;
+        border: 2px solid #efe9db;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    .ledger {
+        @apply bg-white border border-rule rounded-card;
+    }
+
+    .btn-care {
+        @apply inline-flex items-center justify-center gap-2 rounded-card bg-pine px-6 py-3 text-sm font-bold text-paper transition-colors hover:bg-pine-deep;
+    }
+
+    .btn-quiet {
+        @apply inline-flex items-center justify-center gap-2 rounded-card border border-ink/25 px-6 py-3 text-sm font-bold text-ink transition-colors hover:border-pine hover:text-pine;
+    }
+
+    .grade-dot {
+        @apply inline-block h-2.5 w-2.5 rounded-full;
+    }
+
+    .rung-row {
+        @apply flex items-center gap-5 border-t border-rule py-6 first:border-t-0 first:pt-0 last:pb-0;
+    }
+
+    .measure {
+        @apply font-mono text-xs tracking-wide text-ink-faint;
+    }
+
+    .display-tight {
+        letter-spacing: -0.025em;
+        text-wrap: balance;
+    }
+}
+
+@keyframes rung-tick {
+    0%,
+    100% {
+        transform: scaleY(0.35);
+        opacity: 0.45;
+    }
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+.rung-meter span {
+    transform-origin: bottom;
+    animation: rung-tick 1.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.rung-meter span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+.rung-meter span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.rung-meter span:nth-child(4) {
+    animation-delay: 0.45s;
+}
+.rung-meter span:nth-child(5) {
+    animation-delay: 0.6s;
+}
